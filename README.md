@@ -1,19 +1,19 @@
-# Exploratory Data Analysis on Spotify's Most Streamed Songs of 2023
+# 🎧Exploratory Data Analysis (EDA) on  Spotify's Most Streamed Songs of 2023🎵🎶
 
-## What is this Project About?
+## What is this Project About? 🤔
 * This project performs an exploratory data analysis on the Most Streamed Spotify Songs of 2023 Dataset. The goal of this project is to analyze, visualize, and interpret data to gain insights about the most popular music of the year 2023.
 
-## What are the Steps I Did to Accomplish the Project?
+## What are the Steps I Did to Accomplish the Project? 👣
 * I began by familiarizing myself with the dataset’s structure, checking for missing values and identifying data types. This initial examination in Python helped me understand the features available and prepare for further analysis.
 
 * To uncover trends and patterns, I used a variety of visualization tools such as bar charts, line plots, histograms, heatmaps, and scatter plots, ensuring each was well-labeled for easy interpretation. I also analyzed correlations between variables to provide deeper insights into potential relationships within the data.
 
 * Finally, based on my analysis, I offered insights and recommendations regarding popular tracks, artists, and musical trends, helping to highlight factors that contribute to a track’s popularity.
 
-## How Exactly Did I Code?
+## How Exactly Did I Code? 😎
 * To accomplish this project, I followed a systematic approach, in which I addressed each aspect of the exploratory data analysis (EDA) step by step. Below are the questions I answered, a detailed coding procedure I undertook, and a short analysis of the data's results:
   
- ### Preliminary Procedures:
+ ### Preliminary Procedures: 📝
  * The first step to do when coding is to always import Python's Built-in libraries that will be needed
 ```python
 #Import Python Libraries needed for the data analysis and visualization
@@ -22,7 +22,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 ```
 
-* Load the Spotify 2023 Dataset file
+* Load the Spotify 2023 Dataset file ⏳
 ```python
 #Load csv file containing the Spotify 2023 Dataset
 #Use ISO-8559-1 encoding to handle some of the special characters that might cause issues in UTF-8.
@@ -35,7 +35,7 @@ df
 
 ---
 
- ### Overview of Dataset:
+ ### Overview of Dataset: 🔍
 * How many rows and columns does the dataset contain?
 ```python
 #Determine number of rows and columns of the dataset using 'shape' attribute from panda
@@ -216,7 +216,8 @@ plt.show()
 * Examine the correlation between streams and musical attributes like bpm, danceability_%, and energy_%. Which attributes seem to influence streams the most?
 ```python
 #Find the correlation between streams and music attributes
-stream_music_correl = df[['streams','bpm','danceability_%','valence_%','energy_%','acousticness_%','instrumentalness_%','liveness_%','speechiness_%']].corr()
+stream_music_correl = df[['streams','bpm','danceability_%','valence_%','energy_%','acousticness_%',
+                          'instrumentalness_%','liveness_%','speechiness_%']].corr()
 
 #Print the correlation table
 print("Correlation Table:")
@@ -229,20 +230,126 @@ plt.title('Correlation between Streams and Musical Attributes')
 plt.xticks(rotation=45)
 plt.show()
 ```
-##### Correlation between streams and musical attributes
+##### Correlation between Streams and Musical Attributes
 ###### 
 ![image](https://github.com/user-attachments/assets/d5aa186e-bd54-4f87-a428-abeb88099f3b) ![image](https://github.com/user-attachments/assets/c28ecbd1-618f-491f-9bb7-9f25d51c2c78)
 
-
 * Is there a correlation between danceability_% and energy_%? How about valence_% and acousticness_%?
+```python
+#Create subplots with 1 row and 2 columns for comparison
+fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(12, 6))
+
+#Create scatterplot for dance and energy and specify the parameters 
+sns.scatterplot(data = df, x='danceability_%',y='energy_%', alpha = 0.5, color='green',ax=axes[0] )
+axes[0].set_title('Correlation between Danceability% and Energy%')
+axes[0].set_xlabel('Danceability%')
+axes[0].set_ylabel('Energy%')
+
+#Create scatterplot for dance and energy and specify the parameters 
+sns.scatterplot(data = df, x='valence_%',y='acousticness_%', alpha = 0.5, color='blue',ax=axes[1] )
+axes[1].set_title('Correlation between Valence% and Acousticness%')
+axes[1].set_xlabel('Valence%')
+axes[1].set_ylabel('Acousticness%')
+
+#Adjust and show the layout of the 2 subplots
+plt.tight_layout()
+plt.show()
+
+#Show values of correlation
+dance_energy = df[['danceability_%', 'energy_%']].corr()
+print("\nThe correlation between Danceability% and Energy% is")
+print(dance_energy,'\n')
+
+valence_acoustic = df[['valence_%', 'acousticness_%']].corr()
+print("\nThe correlation between Valence% and Acousticness% is")
+print(valence_acoustic,'\n')
+```
+##### Correlation between Danceability% and Energy%, Valence% and Acousticness%
+######
+![image](https://github.com/user-attachments/assets/758213d8-fe6d-4507-83f0-377bb0c7bffb)
+![image](https://github.com/user-attachments/assets/b717c3ff-5943-48d1-8966-5875abf01a98)
 
 ---
 
 ### Platform Popularity:
 * How do the numbers of tracks in spotify_playlists, spotify_charts, and apple_playlists compare? Which platform seems to favor the most popular tracks?
+```python
+#Store variabe columns to ensure columns are correct
+platform = ['in_spotify_playlists', 'in_spotify_charts', 'in_apple_playlists',
+                   'in_apple_charts', 'in_deezer_playlists', 'in_deezer_charts',
+                   'in_shazam_charts']
+
+#Convert non-numeric values in columns to numeric(to NaN)
+for column in platform:
+    df[column] = pd.to_numeric(df[column], errors='coerce') 
+
+#Compute for the total of each platform
+total = {'in_spotify_playlists': df['in_spotify_playlists'].sum(),'in_spotify_charts': df['in_spotify_charts'].sum(),
+    'in_apple_playlists': df['in_apple_playlists'].sum(),'in_apple_charts': df['in_apple_charts'].sum(),
+    'in_deezer_playlists': df['in_deezer_playlists'].sum(),'in_deezer_charts': df['in_deezer_charts'].sum(),
+    'in_shazam_charts': df['in_shazam_charts'].sum()}
+
+#Create a summary DataFrame
+sum_table = pd.DataFrame({'Platform': total.keys(),'Total Track Count': total.values()})
+
+#Display values of the summary
+print(sum_table)
+
+#Create the bar plot to compare the number of tracks
+plt.figure(figsize=(12, 6))
+sns.barplot(data=sum_table, y='Platform',hue='Platform',x ='Total Track Count', palette='rocket')
+
+#Label each parameter and set y-axis to logarithmic scale to compress the range of values
+plt.title('Comparison of Number of Tracks between Different Platforms (Log Scale)', fontsize=16)
+plt.ylabel('Platform', fontsize=14)
+plt.xlabel('Number of Tracks (Log Scale)', fontsize=14)
+plt.xscale('log')
+
+#Display plot
+plt.tight_layout()
+plt.show()
+```
+##### Compasion between Number of Tracks in Different Platforms 
+######
+![image](https://github.com/user-attachments/assets/7d1e34b6-1bf4-435c-9dc3-85b0e97af125)
+![image](https://github.com/user-attachments/assets/7ba566a1-685d-4d04-99d5-196a023e190e)
 
 ---
 
 ### Advanced Analysis:
 * Based on the streams data, can you identify any patterns among tracks with the same key or mode (Major vs. Minor)?
+```python
+#Convert columns with non-numeric values to numeric
+numeric_columns = ['streams']
+df[numeric_columns] = df[numeric_columns].apply(pd.to_numeric, errors='coerce')
+
+#Group by key and mode and calculate total streams
+keymode_sum = df.groupby(['key', 'mode']).agg(
+    total_streams=('streams', 'sum')
+).reset_index()
+
+#Sort the summary by total streams in descending order
+keymode_sum = keymode_sum.sort_values(by='total_streams', ascending=False)
+
+#Display the sorted sum
+print(keymode_sum)
+
+#Visualize Barplot for Total Streams by Key and Mode
+plt.figure(figsize=(12, 6))
+sns.barplot(data=keymode_sum, x='key', y='total_streams', hue='mode', palette='rocket')
+
+#Label the plot's parameters
+plt.title('Total Streams by Key and Mode', fontsize=16)
+plt.xlabel('Key', fontsize=14)
+plt.ylabel('Total Streams', fontsize=14)
+plt.legend(title='Mode')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+#Show the plot
+plt.show()
+```
+##### Comparison Among Tracks with the Same Key or Mode (Major vs. Minor)
+![image](https://github.com/user-attachments/assets/6112ee45-d486-4323-89fb-a26062e48109)
+
 * Do certain genres or artists consistently appear in more playlists or charts? Perform an analysis to compare the most frequently appearing artists in playlists or charts.
