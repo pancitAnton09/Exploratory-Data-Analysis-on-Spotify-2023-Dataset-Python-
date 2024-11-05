@@ -11,31 +11,237 @@
 * Finally, based on my analysis, I offered insights and recommendations regarding popular tracks, artists, and musical trends, helping to highlight factors that contribute to a track’s popularity.
 
 ## How Exactly Did I Code?
-* To accomplish this project, I followed a systematic approach, in which I addressed each aspect of the exploratory data analysis (EDA) step by step. Below are the questions I answered and detailed coding procedure I undertook:
+* To accomplish this project, I followed a systematic approach, in which I addressed each aspect of the exploratory data analysis (EDA) step by step. Below are the questions I answered, a detailed coding procedure I undertook, and a short analysis of the data's results:
   
+ ### Preliminary Procedures:
+ * The first step to do when coding is to always import Python's Built-in libraries that will be needed
+```python
+#Import Python Libraries needed for the data analysis and visualization
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+```
+
+* Load the Spotify 2023 Dataset file
+```python
+#Load csv file containing the Spotify 2023 Dataset
+#Use ISO-8559-1 encoding to handle some of the special characters that might cause issues in UTF-8.
+df = pd.read_csv('spotify-2023.csv', encoding='ISO-8859-1')
+df
+```
+
+##### Spotify 2023 Dataset
+![image](https://github.com/user-attachments/assets/746167f5-f955-4c45-bf8a-759c0260dc7b)
+
+---
+
  ### Overview of Dataset:
 * How many rows and columns does the dataset contain?
-8 What are the data types of each column? Are there any missing values?
+```python
+#Determine number of rows and columns of the dataset using 'shape' attribute from panda
+shape = df.shape
+row, col = shape
+print('Rows:', row)
+print('Columns:', col)
+```
+##### Rows and Columns
+###### The output will show that the table has 953 rows and 24 columns
+ ![image](https://github.com/user-attachments/assets/1ea2cf7f-5b72-4b3d-89dd-cf41a3ea6868)
+
+
+* What are the data types of each column? Are there any missing values?
+  ```python
+  #Determine the datatypes of each column using 'dtypes' attribute
+  datatypes = df.dtypes
+  print(datatypes)
+  ```
+  ```python
+  #Find out if there are any missing values in each columns
+  #Use .isnull().sum() attribute to determine the number of missing values
+  missing = df.isnull().sum()
+  print(missing)
+  ```
+  
+##### Datatypes and Missing Values
+###### The table shows that the dataset contains 64-bit signed integer and object data types, and that the in_shazam_charts and key columns have 50 and 95 missing values, respectively
+![image](https://github.com/user-attachments/assets/c1f5f779-a237-455b-b01d-05dddc8c52a3) ![image](https://github.com/user-attachments/assets/4238d019-38b1-4a27-8407-4172f1496a87)
+
+---
 
 ### Basic Descriptive Statistics:
 * What are the mean, median, and standard deviation of the streams column?
+```python
+#Convert non-numeric values in the 'streams' column  to numeric to avoid errors
+df['streams'] = pd.to_numeric(df['streams'], errors='coerce')
+
+#Use the mean attribute to determine the streams' mean value
+s_mean = df['streams'].mean()
+
+#Use the mean attribute to compute for its median
+s_median = df['streams'].median()
+
+#Determine its standard deviation using std attribute
+s_std = df['streams'].std()
+
+#Print output
+print('Mean:', s_mean)
+print('Median:', s_median)
+print('Standard Deviation:', s_std)
+```
+##### Mean, Median, Standard Deviation
+###### The output shows that the number of "streams' have a Mean of 514,137,424.93907565, a Median of 290,530,915.0, and a Standard Deviation of 566,856,949.0388832
+![image](https://github.com/user-attachments/assets/109a8ef7-9c50-4046-8375-de36be1a4b96)
+
 * What is the distribution of released_year and artist_count? Are there any noticeable trends or outliers?
+```python
+#Create subplots with 1 row and 2 columns for comparison
+fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(12, 4))
+
+#Create the histogram for released_year
+sns.histplot(data=df, x='released_year', color='yellow', ax=axes[0])  # Use the axes parameter to specify the 1st subplot 
+axes[0].set_title('Release Year Distribution', fontsize=14)
+axes[0].set_xlabel('Year of Release', fontsize=12)
+axes[0].set_ylabel('Frequency', fontsize=12)
+
+#Create the histogram for artist_count
+sns.histplot(data=df, x='artist_count', color='green', ax=axes[1])  # Use axes parameter to specify the 2nd subplot
+axes[1].set_title('Artist Count Distribution', fontsize=14)
+axes[1].set_xlabel('Artist Count', fontsize=12)
+axes[1].set_ylabel('Frequency', fontsize=12)
+
+#Adjust the layout of the 2 subplots
+plt.tight_layout()
+
+#Show the combined plots
+plt.show()
+```
+##### Released year & Artist count Distribution
+###### Based on the 1st graph, the latest tracks are amongst the most popular on the Spotify 2023 Dataset,  while the 2nd graph shows that solo artists are prominent.
+![image](https://github.com/user-attachments/assets/593f7f1f-abbe-4391-8aa1-74b670d91a3a)
+
+##### Trend and Outliers (Scatterplot correlation)
+###### The scatterplot suggest that there is little to no correlation between year of releases and artist counts.
+![image](https://github.com/user-attachments/assets/7de83316-6d09-4eec-92c7-bc5732cec70e)
+
+---
 
 ### Top Performers:
 
-*Which track has the highest number of streams? Display the top 5 most streamed tracks.
-*Who are the top 5 most frequent artists based on the number of tracks in the dataset?
+* Which track has the highest number of streams? Display the top 5 most streamed tracks.
+```python
+#Sort the DataFrame by streams in descending order
+top_streams = df.sort_values(by='streams', ascending=False).head()
+
+#Use head attribute to show top 5
+top_streams.head()
+```
+##### Top 5 Most Streamed tracks
+###### Blinding Lights by The Weeknd is the most streamed track, followed by Shape of You, then Someone You Loved	 by Lewis Capaldi. With Dance Monkey by Tones and I as fourth and lastly, Sunflower by	Post Malone
+![image](https://github.com/user-attachments/assets/d59bee07-e787-4858-a95d-623bcfb61453)
+
+* Who are the top 5 most frequent artists based on the number of tracks in the dataset?
+```python
+#Count the frequency of each artist and get the top 5
+artist_freq = df['artist(s)_name'].value_counts().head()
+print(artist_freq)
+
+#Plot the data directly without converting it to a DataFrame
+sns.barplot(hue=artist_freq.index, y=artist_freq.values, legend=True, palette='viridis')
+
+#Label the parameters of the bar chart
+plt.xlabel('Artist')
+plt.ylabel('Frequency')
+plt.title('Top 5 Most Frequent Artists')
+plt.show()
+```
+##### Top 5 Most Frequent Artists
+###### 
+![image](https://github.com/user-attachments/assets/57d79e91-19cd-4372-b234-bbfeb98d19b4) ![image](https://github.com/user-attachments/assets/a4ce4718-b61d-44ca-97c5-2a67b6038b6a)
+
+
+---
 
 ### Temporal Trends:
 * Analyze the trends in the number of tracks released over time. Plot the number of tracks released per year.
+  ```python
+  #Count the number of tracks released per year in the dataframe
+  yearly_tracks = df['released_year'].value_counts().sort_index()
+  print(yearly_tracks)
+
+  #Create a barplot and set the parameters
+  plt.figure(figsize=(15, 8))
+  sns.lineplot(x=yearly_tracks.index, y=yearly_tracks.values, color='cyan',marker='o', markersize=6, linewidth=1.5)
+
+  #Label each axes
+  plt.title('Number of Tracks Released Per Year', fontsize=15)
+  plt.xlabel('Release Year', fontsize=14)
+  plt.ylabel('Number of Tracks', fontsize=14)
+  plt.xticks(ticks=range(yearly_tracks.index.min(), yearly_tracks.index.max() + 1,3),rotation=45, fontsize=7)
+  plt.yticks(fontsize=10)
+  plt.show()
+  ```
+  ###### Number of Tracks Released per Year
+  #######
+  ![image](https://github.com/user-attachments/assets/cb8a58ee-a65a-4fdf-9b6b-6b689144f97e)
+
 * Does the number of tracks released per month follow any noticeable patterns? Which month sees the most releases?
+```python
+#Count the number of tracks released per year in the dataframe
+monthly_tracks = df['released_month'].value_counts().sort_index()
+print(monthly_tracks)
+
+#Create a list of the names of the months
+month_name = ['January','February','March','April','May','June','July','August','September','October','November','December']
+
+#Create a barplot and set the parameters
+plt.figure(figsize=(15, 8)) 
+sns.barplot(x=month_name,hue=month_name, y=monthly_tracks.values, palette='dark:brown')
+
+#Label each axes
+plt.title('Number of Tracks Released Per Month', fontsize=15) 
+plt.xlabel('Release Month', fontsize=14)  
+plt.ylabel('Number of Tracks', fontsize=14)  
+plt.xticks(fontsize=12)  
+plt.yticks(fontsize=12)  
+plt.show()
+```
+##### Number of Tracks Released per Month
+######
+![image](https://github.com/user-attachments/assets/bf5020bc-01d6-4e13-8b14-13e62e245cad)
+
+
+---
 
 ### Genre and Music Characteristics:
 * Examine the correlation between streams and musical attributes like bpm, danceability_%, and energy_%. Which attributes seem to influence streams the most?
+```python
+#Find the correlation between streams and music attributes
+stream_music_correl = df[['streams','bpm','danceability_%','valence_%','energy_%','acousticness_%','instrumentalness_%','liveness_%','speechiness_%']].corr()
+
+#Print the correlation table
+print("Correlation Table:")
+print(stream_music_correl)
+
+#Plot the correlation between streams and music attribute using heatmap
+plt.figure(figsize=(8, 6))
+sns.heatmap(stream_music_correl, annot=True, cmap='Reds', fmt='.2f', square=True)
+plt.title('Correlation between Streams and Musical Attributes')
+plt.xticks(rotation=45)
+plt.show()
+```
+##### Correlation between streams and musical attributes
+###### 
+![image](https://github.com/user-attachments/assets/d5aa186e-bd54-4f87-a428-abeb88099f3b) ![image](https://github.com/user-attachments/assets/c28ecbd1-618f-491f-9bb7-9f25d51c2c78)
+
+
 * Is there a correlation between danceability_% and energy_%? How about valence_% and acousticness_%?
-  
+
+---
+
 ### Platform Popularity:
 * How do the numbers of tracks in spotify_playlists, spotify_charts, and apple_playlists compare? Which platform seems to favor the most popular tracks?
+
+---
 
 ### Advanced Analysis:
 * Based on the streams data, can you identify any patterns among tracks with the same key or mode (Major vs. Minor)?
