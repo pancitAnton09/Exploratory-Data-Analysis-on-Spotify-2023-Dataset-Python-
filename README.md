@@ -276,7 +276,7 @@ print(valence_acoustic,'\n')
 ---
 
 ### Platform Popularity🌐
-* How do the numbers of tracks in spotify_playlists, spotify_charts, and apple_playlists compare? Which platform seems to favor the most popular tracks?
+* How do the numbers of tracks in spotify_playlists, spotify_charts, and apple_playlists compare?
 ```python
 #Store variabe columns to ensure columns are correct
 platform = ['in_spotify_playlists', 'in_spotify_charts', 'in_apple_playlists',
@@ -313,10 +313,27 @@ plt.xscale('log')
 plt.tight_layout()
 plt.show()
 ```
-##### Compasion between Number of Tracks in Different Platforms🎶
+
+##### Comparison between Number of Tracks in Different Platforms🎶
 ######
 ![image](https://github.com/user-attachments/assets/7d1e34b6-1bf4-435c-9dc3-85b0e97af125)
 ![image](https://github.com/user-attachments/assets/7ba566a1-685d-4d04-99d5-196a023e190e)
+
+ Which platform seems to favor the most popular tracks?
+```python
+#Sort DataFrame by streams in descending order and get the top 10 tracks
+top_tracks = df.sort_values(by='streams', ascending=False).head(10)
+
+#Use loc to select different columns to be displayed
+top_tracks_table = top_tracks.loc[:, ['track_name', 'streams', 'in_spotify_playlists', 'in_spotify_charts','in_apple_playlists',
+                                      'in_apple_charts', 'in_deezer_playlists','in_deezer_charts', 'in_shazam_charts']]
+
+#Display the top tracks table
+top_tracks_table
+```
+##### Most Popular Tracks and Different Platforms
+######
+![image](https://github.com/user-attachments/assets/fb4ed387-0d73-4c65-b2ba-902c18f8141c)
 
 ---
 
@@ -358,7 +375,7 @@ plt.show()
 ![image](https://github.com/user-attachments/assets/6112ee45-d486-4323-89fb-a26062e48109)
 
 * Do certain genres or artists consistently appear in more playlists or charts? Perform an analysis to compare the most frequently appearing artists in playlists or charts.
-```
+```python
 #Create DataFrame to count occurrences of each artist in different playlists and charts
 artist_total = df.groupby('artist(s)_name').agg(
     spotify_playlists=('in_spotify_playlists', 'sum'),
@@ -398,6 +415,8 @@ plt.show()
 ######
 ![image](https://github.com/user-attachments/assets/0654caec-dc85-4d19-989f-7ca43de30e94)
 
+## Summary of Insights and Recommendations🔍📋
+
 ## Coder's Corner 💻👨‍💻
 ### Medenilla, Jose Anton M.
 * A 2nd Year Electronics Engineering at UST as of repository creation
@@ -408,3 +427,4 @@ plt.show()
 * Seaborn: https://seaborn.pydata.org/tutorial/categorical.html
 * ChatGPT
 
+# That's all. Thanks a bunch! 🙌
