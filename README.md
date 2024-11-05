@@ -46,8 +46,7 @@ print('Columns:', col)
 ```
 ##### Rows and Columns
 ###### The output will show that the table has 953 rows and 24 columns
- ![image](https://github.com/user-attachments/assets/1ea2cf7f-5b72-4b3d-89dd-cf41a3ea6868)
-
+![image](https://github.com/user-attachments/assets/1c8c4aea-5c09-4a10-b0a5-2deb8c4a3d9e)
 
 * What are the data types of each column? Are there any missing values?
   ```python
@@ -115,7 +114,7 @@ plt.tight_layout()
 #Show the combined plots
 plt.show()
 ```
-##### Released year & Artist count Distribution
+##### Released Year & Artist Count Distribution
 ###### Based on the 1st graph, the latest tracks are amongst the most popular on the Spotify 2023 Dataset,  while the 2nd graph shows that solo artists are prominent.
 ![image](https://github.com/user-attachments/assets/593f7f1f-abbe-4391-8aa1-74b670d91a3a)
 
