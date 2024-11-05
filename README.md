@@ -13,8 +13,8 @@
 ## How Exactly Did I Code? 😎
 * To accomplish this project, I followed a systematic approach, in which I addressed each aspect of the exploratory data analysis (EDA) step by step. Below are the questions I answered, a detailed coding procedure I undertook, and a short analysis of the data's results:
   
- ### Preliminary Procedures: 📝
- * The first step to do when coding is to always import Python's Built-in libraries that will be needed
+### Preliminary Procedures📝
+ * The first step to do when coding is to always import Python's Built-in libraries that will be needed.
 ```python
 #Import Python Libraries needed for the data analysis and visualization
 import pandas as pd
@@ -22,7 +22,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 ```
 
-* Load the Spotify 2023 Dataset file ⏳
+* Load the Spotify 2023 Dataset file⏳
 ```python
 #Load csv file containing the Spotify 2023 Dataset
 #Use ISO-8559-1 encoding to handle some of the special characters that might cause issues in UTF-8.
@@ -68,7 +68,7 @@ print('Columns:', col)
 
 ---
 
-### Basic Descriptive Statistics:
+### Basic Descriptive Statistics📌
 * What are the mean, median, and standard deviation of the streams column?
 ```python
 #Convert non-numeric values in the 'streams' column  to numeric to avoid errors
@@ -88,7 +88,7 @@ print('Mean:', s_mean)
 print('Median:', s_median)
 print('Standard Deviation:', s_std)
 ```
-##### Mean, Median, Standard Deviation
+##### Mean, Median, Standard Deviation 💹
 ###### The output shows that the number of "streams' have a Mean of 514,137,424.93907565, a Median of 290,530,915.0, and a Standard Deviation of 566,856,949.0388832
 ![image](https://github.com/user-attachments/assets/109a8ef7-9c50-4046-8375-de36be1a4b96)
 
@@ -125,7 +125,7 @@ plt.show()
 
 ---
 
-### Top Performers:
+### Top Performers🌟
 
 * Which track has the highest number of streams? Display the top 5 most streamed tracks.
 ```python
@@ -154,14 +154,14 @@ plt.ylabel('Frequency')
 plt.title('Top 5 Most Frequent Artists')
 plt.show()
 ```
-##### Top 5 Most Frequent Artists
+
+##### Top 5 Most Frequent Artists👨‍🎤👩‍🎤
 ###### 
 ![image](https://github.com/user-attachments/assets/57d79e91-19cd-4372-b234-bbfeb98d19b4) ![image](https://github.com/user-attachments/assets/a4ce4718-b61d-44ca-97c5-2a67b6038b6a)
 
-
 ---
 
-### Temporal Trends:
+### Temporal Trends📉
 * Analyze the trends in the number of tracks released over time. Plot the number of tracks released per year.
   ```python
   #Count the number of tracks released per year in the dataframe
@@ -180,8 +180,10 @@ plt.show()
   plt.yticks(fontsize=10)
   plt.show()
   ```
-  ###### Number of Tracks Released per Year
+  
+  ###### Number of Tracks Released per Year🎤
   #######
+
   ![image](https://github.com/user-attachments/assets/cb8a58ee-a65a-4fdf-9b6b-6b689144f97e)
 
 * Does the number of tracks released per month follow any noticeable patterns? Which month sees the most releases?
@@ -205,14 +207,14 @@ plt.xticks(fontsize=12)
 plt.yticks(fontsize=12)  
 plt.show()
 ```
-##### Number of Tracks Released per Month
+##### Number of Tracks Released per Month📀
 ######
 ![image](https://github.com/user-attachments/assets/bf5020bc-01d6-4e13-8b14-13e62e245cad)
 
 
 ---
 
-### Genre and Music Characteristics:
+### Genre and Music Characteristics🎸
 * Examine the correlation between streams and musical attributes like bpm, danceability_%, and energy_%. Which attributes seem to influence streams the most?
 ```python
 #Find the correlation between streams and music attributes
@@ -230,7 +232,8 @@ plt.title('Correlation between Streams and Musical Attributes')
 plt.xticks(rotation=45)
 plt.show()
 ```
-##### Correlation between Streams and Musical Attributes
+
+##### Correlation between Streams and Musical Attributes 📊
 ###### 
 ![image](https://github.com/user-attachments/assets/d5aa186e-bd54-4f87-a428-abeb88099f3b) ![image](https://github.com/user-attachments/assets/c28ecbd1-618f-491f-9bb7-9f25d51c2c78)
 
@@ -264,14 +267,15 @@ valence_acoustic = df[['valence_%', 'acousticness_%']].corr()
 print("\nThe correlation between Valence% and Acousticness% is")
 print(valence_acoustic,'\n')
 ```
-##### Correlation between Danceability% and Energy%, Valence% and Acousticness%
+
+##### Correlation between Danceability% and Energy%, Valence% and Acousticness%💃
 ######
 ![image](https://github.com/user-attachments/assets/758213d8-fe6d-4507-83f0-377bb0c7bffb)
 ![image](https://github.com/user-attachments/assets/b717c3ff-5943-48d1-8966-5875abf01a98)
 
 ---
 
-### Platform Popularity:
+### Platform Popularity🌐
 * How do the numbers of tracks in spotify_playlists, spotify_charts, and apple_playlists compare? Which platform seems to favor the most popular tracks?
 ```python
 #Store variabe columns to ensure columns are correct
@@ -309,14 +313,14 @@ plt.xscale('log')
 plt.tight_layout()
 plt.show()
 ```
-##### Compasion between Number of Tracks in Different Platforms 
+##### Compasion between Number of Tracks in Different Platforms🎶
 ######
 ![image](https://github.com/user-attachments/assets/7d1e34b6-1bf4-435c-9dc3-85b0e97af125)
 ![image](https://github.com/user-attachments/assets/7ba566a1-685d-4d04-99d5-196a023e190e)
 
 ---
 
-### Advanced Analysis:
+### Advanced Analysis📊
 * Based on the streams data, can you identify any patterns among tracks with the same key or mode (Major vs. Minor)?
 ```python
 #Convert columns with non-numeric values to numeric
@@ -349,7 +353,58 @@ plt.tight_layout()
 #Show the plot
 plt.show()
 ```
-##### Comparison Among Tracks with the Same Key or Mode (Major vs. Minor)
+
+##### Comparison Among Tracks with the Same Key or Mode (Major vs. Minor)🎹
 ![image](https://github.com/user-attachments/assets/6112ee45-d486-4323-89fb-a26062e48109)
 
 * Do certain genres or artists consistently appear in more playlists or charts? Perform an analysis to compare the most frequently appearing artists in playlists or charts.
+```
+#Create DataFrame to count occurrences of each artist in different playlists and charts
+artist_total = df.groupby('artist(s)_name').agg(
+    spotify_playlists=('in_spotify_playlists', 'sum'),
+    spotify_charts=('in_spotify_charts', 'sum'),
+    apple_playlists=('in_apple_playlists', 'sum'),
+    apple_charts=('in_apple_charts', 'sum'),
+    deezer_playlists=('in_deezer_playlists', 'sum'),
+    deezer_charts=('in_deezer_charts', 'sum'),
+    shazam_charts=('in_shazam_charts', 'sum')).reset_index()
+
+# Add a total column for the overall appearance in playlists and charts
+artist_total['total_appearance'] = artist_total[['spotify_playlists', 'spotify_charts', 'apple_playlists', 'apple_charts', 
+                                                       'deezer_playlists', 'deezer_charts', 'shazam_charts']].sum(axis=1)
+
+# Sort by total appearances in descending order
+artist_total = artist_total.sort_values(by='total_appearance', ascending=False)
+
+# Display the summary of artists
+print(artist_total.head(10))
+
+# Visualization: Bar Plot for Artist Appearances
+plt.figure(figsize=(12, 6))
+top_artists = artist_total.head(10)  # Select top 10 artists for visualization
+sns.barplot(data=top_artists, y='total_appearance', x='artist(s)_name', hue='artist(s)_name', palette='icefire')
+
+# Label the plot
+plt.title('Most Frequently Appearing Artists in Playlists and Charts', fontsize=16)
+plt.ylabel('Total Appearances', fontsize=14)
+plt.xlabel('Artist Name', fontsize=14)
+plt.tight_layout()
+
+# Show the plot
+plt.show()
+```
+
+##### Most Frequently Appearing Artists in Playlists or Charts📅📈
+######
+![image](https://github.com/user-attachments/assets/0654caec-dc85-4d19-989f-7ca43de30e94)
+
+## Coder's Corner 💻👨‍💻
+### Medenilla, Jose Anton M.
+* A 2nd Year Electronics Engineering at UST as of repository creation
+
+## Reference Material/s:
+* ECE 2112 Lecture Materials by Engr. Ma. Madecheen S. Pangaliman,
+* Matplotlib: https://matplotlib.org/3.5.3/api/_as_gen/matplotlib.pyplot.html
+* Seaborn: https://seaborn.pydata.org/tutorial/categorical.html
+* ChatGPT
+
