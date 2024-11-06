@@ -433,13 +433,13 @@ plt.show()
 * A 2nd Year Electronics Engineering at UST as of repository creation
 
 ## Reference Material/s:
-* ECE 2112 Lecture Materials by Engr. Ma. Madecheen S. Pangaliman,
-* Matplotlib: https://matplotlib.org/3.5.3/api/_as_gen/matplotlib.pyplot.html
-* Seaborn: https://seaborn.pydata.org/tutorial/categorical.html
-* https://youtu.be/2Kv6U6CGrA4?si=IkPrJLv1jHjFU3Yd
-* https://youtu.be/0Ddzm6PpkI0?si=sitmxG9kLY1VgVPE
-* https://youtu.be/AJhAv9xVEXU?si=sAa743-odBG_hP3O
-* https://youtu.be/VRmXto2YA2I?si=H8ooa0lh3pUoDC5f
+* ECE 2112 Lecture Materials by Engr. Ma. Madecheen S. Pangaliman
+* Matplotlib Developers. matplotlib.pyplot. https://matplotlib.org/3.5.3/api/_as_gen/matplotlib.pyplot.html
+* Seaborn Developers. Categorical data. https://seaborn.pydata.org/tutorial/categorical.html
+* Code with Data - Handle Missing Data in Pandas(drop na,fillna). https://youtu.be/2Kv6U6CGrA4?si=IkPrJLv1jHjFU3Yd
+* Code with Data - Histogram in Matplotlib. https://youtu.be/0Ddzm6PpkI0?si=sitmxG9kLY1VgVPE
+* How to -  How to use divergent colormap in Seaborn heatmap in Python. https://youtu.be/AJhAv9xVEXU?si=sAa743-odBG_hP3O
+* Alex The Analyst - Group By and Aggregate Functions in Pandashttps://youtu.be/VRmXto2YA2I?si=H8ooa0lh3pUoDC5f
 * ChatGPT
 
 # That's all. Thanks a bunch! 🙌
