@@ -62,7 +62,7 @@ print('Columns:', col)
   ```
   
 ##### Datatypes and Missing Values
-###### The table shows that the dataset contains 64-bit signed integer and object data types, and that the in_shazam_charts and key columns have 50 and 95 missing values, respectively
+###### The table shows that the dataset contains 64-bit signed integer and object data types, and that the in_shazam_charts and key columns have 50 and 95 missing values, respectively.
 ![image](https://github.com/user-attachments/assets/c1f5f779-a237-455b-b01d-05dddc8c52a3) ![image](https://github.com/user-attachments/assets/4238d019-38b1-4a27-8407-4172f1496a87)
 
 ---
@@ -88,7 +88,7 @@ print('Median:', s_median)
 print('Standard Deviation:', s_std)
 ```
 ##### Mean, Median, Standard Deviation 💹
-###### The output shows that the number of "streams' have a Mean of 514,137,424.93907565, a Median of 290,530,915.0, and a Standard Deviation of 566,856,949.0388832
+###### The output shows that the number of "streams' have a Mean of 514,137,424.93907565, a Median of 290,530,915.0, and a Standard Deviation of 566,856,949.0388832.
 ![image](https://github.com/user-attachments/assets/109a8ef7-9c50-4046-8375-de36be1a4b96)
 
 * What is the distribution of released_year and artist_count? Are there any noticeable trends or outliers?
@@ -135,7 +135,7 @@ top_streams = df.sort_values(by='streams', ascending=False).head()
 top_streams.head()
 ```
 ##### Top 5 Most Streamed tracks
-###### Blinding Lights by The Weeknd is the most streamed track, followed by Shape of You, then Someone You Loved	 by Lewis Capaldi. With Dance Monkey by Tones and I as fourth and lastly, Sunflower by	Post Malone
+###### Blinding Lights by The Weeknd is the most streamed track, followed by Ed Sheeran's Shape of You, then Someone You Loved by Lewis Capaldi. With Dance Monkey by Tones and I as fourth and last but not the least, Sunflower by	Post Malone.
 ![image](https://github.com/user-attachments/assets/d59bee07-e787-4858-a95d-623bcfb61453)
 
 * Who are the top 5 most frequent artists based on the number of tracks in the dataset?
@@ -155,7 +155,7 @@ plt.show()
 ```
 
 ##### Top 5 Most Frequent Artists👨‍🎤👩‍🎤
-###### 
+###### Based on the data, Taylor Swift leads the pack, with 34 recorded tracks, The Weeknd with 22. Bad Bunny and SZA follows with 19, and Harry Styles with a total of 17 tracks
 ![image](https://github.com/user-attachments/assets/57d79e91-19cd-4372-b234-bbfeb98d19b4) ![image](https://github.com/user-attachments/assets/a4ce4718-b61d-44ca-97c5-2a67b6038b6a)
 
 ---
@@ -181,7 +181,7 @@ plt.show()
   ```
   
   ###### Number of Tracks Released per Year🎤
-  #######
+  ###### It can be noticed below that the year 2022 has the most number of tracks released with a total of 402 tracks.
 
   ![image](https://github.com/user-attachments/assets/cb8a58ee-a65a-4fdf-9b6b-6b689144f97e)
 
@@ -207,7 +207,7 @@ plt.yticks(fontsize=12)
 plt.show()
 ```
 ##### Number of Tracks Released per Month📀
-######
+###### Evidently, January has the peak number of tracks released monlthy, followed by the Month of May. It can also be noticed that starting September, the number of tracks released monthly increases.
 ![image](https://github.com/user-attachments/assets/bf5020bc-01d6-4e13-8b14-13e62e245cad)
 
 
@@ -233,7 +233,7 @@ plt.show()
 ```
 
 ##### Correlation between Streams and Musical Attributes 📊
-###### 
+###### The heatmap below which was used to show the correlation between Streams and Different Musical Attributes suggests that there is little to no correlation between them. Danceability& and Speechiness have the highest values, which is -0.11, which is still negligible in terms of correlational statistics.
 ![image](https://github.com/user-attachments/assets/d5aa186e-bd54-4f87-a428-abeb88099f3b) ![image](https://github.com/user-attachments/assets/c28ecbd1-618f-491f-9bb7-9f25d51c2c78)
 
 * Is there a correlation between danceability_% and energy_%? How about valence_% and acousticness_%?
@@ -268,7 +268,7 @@ print(valence_acoustic,'\n')
 ```
 
 ##### Correlation between Danceability% and Energy%, Valence% and Acousticness%💃
-######
+###### The scatterplot on the left tells us that there is a very weak positive correlation between Danceability% and Energy%. While the scatterplot on the right demonstrates a negligible relation between Valence% and Acousticness%.
 ![image](https://github.com/user-attachments/assets/758213d8-fe6d-4507-83f0-377bb0c7bffb)
 ![image](https://github.com/user-attachments/assets/b717c3ff-5943-48d1-8966-5875abf01a98)
 
@@ -314,7 +314,7 @@ plt.show()
 ```
 
 ##### Comparison between Number of Tracks in Different Platforms🎶
-######
+###### As evidently shown by the barplot below, the Number of Tracks in Spotify Playlists has the most counts with a value 4,955,719.0
 ![image](https://github.com/user-attachments/assets/7d1e34b6-1bf4-435c-9dc3-85b0e97af125)
 ![image](https://github.com/user-attachments/assets/7ba566a1-685d-4d04-99d5-196a023e190e)
 
@@ -331,7 +331,7 @@ top_tracks_table = top_tracks.loc[:, ['track_name', 'streams', 'in_spotify_playl
 top_tracks_table
 ```
 ##### Most Popular Tracks and Different Platforms
-######
+###### The table of the Most Popular Tracks below proves that it favors Spotify playlists the most among the other platforms.
 ![image](https://github.com/user-attachments/assets/fb4ed387-0d73-4c65-b2ba-902c18f8141c)
 
 ---
@@ -371,6 +371,7 @@ plt.show()
 ```
 
 ##### Comparison Among Tracks with the Same Key or Mode (Major vs. Minor)🎹
+###### We can notice that the Tracks with the Key of C# Major seems to be the most favored based on Total Streams. Followed by the Major Keys of D, G#, and G. It can also be noticed that the tracks  written in Major Keys are favored over their minor counterparts, with the exception of the Minor Keys of B, E, F#, and D#.
 ![image](https://github.com/user-attachments/assets/6112ee45-d486-4323-89fb-a26062e48109)
 
 * Do certain genres or artists consistently appear in more playlists or charts? Perform an analysis to compare the most frequently appearing artists in playlists or charts.
@@ -385,36 +386,47 @@ artist_total = df.groupby('artist(s)_name').agg(
     deezer_charts=('in_deezer_charts', 'sum'),
     shazam_charts=('in_shazam_charts', 'sum')).reset_index()
 
-# Add a total column for the overall appearance in playlists and charts
+#Add total column for the overall appearance in playlists and charts
 artist_total['total_appearance'] = artist_total[['spotify_playlists', 'spotify_charts', 'apple_playlists', 'apple_charts', 
-                                                       'deezer_playlists', 'deezer_charts', 'shazam_charts']].sum(axis=1)
+                                                 'deezer_playlists', 'deezer_charts', 'shazam_charts']].sum(axis=1)
 
-# Sort by total appearances in descending order
-artist_total = artist_total.sort_values(by='total_appearance', ascending=False)
+#Sort by total appearances in descending order 
+artist_total = artist_total.sort_values(by='total_appearance', ascending=False).head(10)
 
-# Display the summary of artists
-print(artist_total.head(10))
+# Melt the DataFrame to have 'Platform' and 'Appearance Count' columns for plotting
+melted = artist_total.melt(id_vars='artist(s)_name', 
+                           value_vars=['spotify_playlists', 'spotify_charts', 'apple_playlists', 'apple_charts', 'deezer_playlists',
+                                       'deezer_charts', 'shazam_charts'],
+                           var_name='Platform', value_name='Appearance Count')
 
-# Visualization: Bar Plot for Artist Appearances
-plt.figure(figsize=(12, 6))
-top_artists = artist_total.head(10)  # Select top 10 artists for visualization
-sns.barplot(data=top_artists, y='total_appearance', x='artist(s)_name', hue='artist(s)_name', palette='icefire')
+#Set the graph and separate bar plot for each platform for top artists
+plt.figure(figsize=(14, 8))
+sns.barplot(data=melted, x='artist(s)_name', y='Appearance Count', hue='Platform', palette='magma')
 
-# Label the plot
-plt.title('Most Frequently Appearing Artists in Playlists and Charts', fontsize=16)
-plt.ylabel('Total Appearances', fontsize=14)
+#Label the plot's parameters
+plt.title('Top 10 Artists in Different Playlists and Charts', fontsize=16)
+plt.ylabel('Appearance Count', fontsize=14)
+plt.yscale('log')
 plt.xlabel('Artist Name', fontsize=14)
+plt.xticks(rotation=45, ha='right')
 plt.tight_layout()
 
-# Show the plot
+#Show the plot
 plt.show()
+
 ```
 
 ##### Most Frequently Appearing Artists in Playlists or Charts📅📈
-######
-![image](https://github.com/user-attachments/assets/0654caec-dc85-4d19-989f-7ca43de30e94)
+###### Upon observation, it can immediately be noticed that the Most Frequently Appearing Artists, starting from The Weeknd, to Taylor Swift, to Ed Sheeran, up to Snoop Dog are all commonly and dominantly appearing in Spotify Playlists.
+![image](https://github.com/user-attachments/assets/eac8e78d-b3f8-4ef8-82df-fc887bc533e4)
 
 ## Summary of Insights and Recommendations🔍📋
+#### My analysis on the Spotify 2023 dataset highlights trends in track popularity, artist prominence, and different platform influence. During this project, I happened to notice  that newer releases tend to dominate, with 2022 featuring the highest number of new tracks and January marking the peak month for the number of releases. Solo artists tend to lead in popularity, with Taylor Swift, The Weeknd, Bad Bunny, SZA, and Harry Styles having the most recorded tracks. Among the most-streamed songs, "Blinding Lights" by The Weeknd takes the top spot, then followed by Ed Sheeran's "Shape of You" and Lewis Capaldi's "Someone You Loved". This suggests that a strong trend toward solo artists  reflect listeners’ preference for more personal, individual music experience. 
+
+#### Spotify playlists demonstrated a significant factor in driving track visibility, which holdshe highest track counts compared to other platforms. While there is little to no correlation between streams and most musical attributes, tracks with highly danceable and energetic qualities tend to slightly be more popular. Furthermore, those in major keys—especially C# Major also appear to be slightly more in line with trends.
+
+### So, what makes a track popular?
+#### Songs that are released in early months, particularly the month of January, may aid in making a track more popular as a new year starts and people are looking forward to something new. Being a solo artist may also be beneficial as they are highly favored in terms of popularity, as listeners are alwasy looking forward to unique individual experience that emphasizes their emmotions. For visibility, utilizing Spotify can help maximize reach and engagement. While Spotify may be the most dominant platform, diversifying your presence as an artist across platforms such as Apple Music, Deezer, and Shazam could broaden your audience. Furthermore, while different musical attributes have minimal correlation with a track's streams, making a song that people will relate to, a song that they can vibe to, by heart and mind, will ensure that a song will get a recognition it deserves. 
 
 ## Coder's Corner 💻👨‍💻
 ### Medenilla, Jose Anton M.
@@ -424,6 +436,10 @@ plt.show()
 * ECE 2112 Lecture Materials by Engr. Ma. Madecheen S. Pangaliman,
 * Matplotlib: https://matplotlib.org/3.5.3/api/_as_gen/matplotlib.pyplot.html
 * Seaborn: https://seaborn.pydata.org/tutorial/categorical.html
+* https://youtu.be/2Kv6U6CGrA4?si=IkPrJLv1jHjFU3Yd
+* https://youtu.be/0Ddzm6PpkI0?si=sitmxG9kLY1VgVPE
+* https://youtu.be/AJhAv9xVEXU?si=sAa743-odBG_hP3O
+* https://youtu.be/VRmXto2YA2I?si=H8ooa0lh3pUoDC5f
 * ChatGPT
 
 # That's all. Thanks a bunch! 🙌
